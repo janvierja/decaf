@@ -1,3 +1,40 @@
+# Created by http://www.gitignore.io
+
+### C++ ###
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+
+### Linux ###
+*~
+
+# KDE directory preferences
+.directory
+
+
+### CMake ###
 CMakeCache.txt
 CMakeFiles
 Makefile
