@@ -24,9 +24,14 @@
 
 #include "decaf/lang/Common.hpp"
 #include "decaf/util/concurrent/locks/Mutex.hpp"
+#include "CloneNotSupportedException.hpp"
 
 DECAF_OPEN_NAMESPACE2(decaf, lang)
 
+/**
+ * Class Object is the root of the class hierarchy. Every class in the
+ * Decaf Class Library has Object as a base class.
+ */
 class Object {
   public:
     typedef std::type_info Type;
@@ -295,18 +300,20 @@ class Object {
      *
      * will be true, and that the expression:
      *
-     *     x.clone().getType() == x.getType()
+     *     x.clone()->getType() == x.getType()
      *
      * will be true, but these are not absolute requirements. While it is typically the case that:
      *
-     *     x.clone().equals(x)
+     *     x.clone()->equals(x)
      *
      * will be true, this is not an absolute requirement.
      *
      * @return A pointer to the clone of this object. It is the client's responsibility to release
      * the pointer.
      */
-    virtual Object* clone();
+    virtual Object* clone() {
+        throw CloneNotSupportedException;
+    }
 
     mutable uint64_t m_hashCode;
 
