@@ -7,6 +7,8 @@ DECAF_OPEN_NAMESPACE2(decaf, lang)
 #define DECAF_OBJECT_ALIGNMENT_SHIFT    3
 
 using std::string;
+using std::lock_guard;
+using std::recursive_mutex;
 
 // ----------------------------------------------------------------------------
 
@@ -36,10 +38,8 @@ string Object::getTypeName() const {
     size_t bufsz = sizeof (buf);
     int status{0};
 
-    m_mutex.wait();
+    lock_guard<recursive_mutex> lock(m_mutex);
     char* res = abi::__cxa_demangle(getType().name(), buf, &bufsz, &status);
-    m_mutex.release();
-
     string demangledName = string(res);
 
     return demangledName.c_str();

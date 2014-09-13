@@ -21,10 +21,10 @@
 #include <typeinfo>
 #include <cstdint>
 #include <string>
+#include <mutex>
 
 #include "decaf/lang/Common.hpp"
-#include "decaf/util/concurrent/locks/Mutex.hpp"
-#include "CloneNotSupportedException.hpp"
+#include "decaf/lang/CloneNotSupportedException.hpp"
 
 DECAF_OPEN_NAMESPACE2(decaf, lang)
 
@@ -36,7 +36,7 @@ class Object {
   public:
     typedef std::type_info Type;
 
-    Object() throw () : m_hashCode(0), m_mutex() { }
+    Object() throw () : m_hashCode(0) { }
     virtual ~Object() = default;
 
     /**
@@ -318,7 +318,7 @@ class Object {
     mutable uint64_t m_hashCode;
 
   private:
-    decaf::util::concurrent::locks::Mutex m_mutex;
+    mutable std::recursive_mutex m_mutex;
 };
 
 DECAF_CLOSE_NAMESPACE2

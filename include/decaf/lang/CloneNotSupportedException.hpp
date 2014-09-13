@@ -17,6 +17,8 @@
 #ifndef DECAF_LANG_CLONENOTSUPPORTEDEXCEPTION_HPP
 #define	DECAF_LANG_CLONENOTSUPPORTEDEXCEPTION_HPP
 
+#include <string>
+
 #include "decaf/lang/Common.hpp"
 #include "decaf/lang/Object.hpp"
 #include "decaf/lang/Exception.hpp"

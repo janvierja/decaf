@@ -33,8 +33,7 @@ else()
 endif()
 
 set(decaf_LIB_SRCS
-	src/lang/Object.cpp
-	src/util/concurrent/locks/Mutex.cpp)
+	src/lang/Object.cpp)
 
 add_definitions(-D_REENTRANT)
 
