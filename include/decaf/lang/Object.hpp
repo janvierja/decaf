@@ -22,9 +22,9 @@
 #include <cstdint>
 #include <string>
 #include <mutex>
+#include <condition_variable>
 
 #include "decaf/lang/Common.hpp"
-#include "decaf/lang/CloneNotSupportedException.hpp"
 
 DECAF_OPEN_NAMESPACE2(decaf, lang)
 
@@ -312,13 +312,17 @@ class Object {
      * the pointer.
      */
     virtual Object* clone() {
-        throw CloneNotSupportedException;
+        return 0;
     }
 
     mutable uint64_t m_hashCode;
 
   private:
     mutable std::recursive_mutex m_mutex;
+    struct Monitor {
+        std::recursive_mutex        m_mutex;
+        std::condition_variable_any m_conditionVariable;
+    } m_monitor;
 };
 
 DECAF_CLOSE_NAMESPACE2

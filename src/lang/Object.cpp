@@ -52,7 +52,7 @@ string Object::toString() const {
     static const uint8_t stringHashCodeValueSize{64};
     char stringHashCodeValue[stringHashCodeValueSize]{};
 
-    snprintf(stringHashCodeValue, stringHashCodeValueSize, "%lx", hashCode());
+    snprintf(stringHashCodeValue, stringHashCodeValueSize, "%llx", hashCode());
     return string(demangledName + "@" + stringHashCodeValue);
 }
 

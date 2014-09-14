@@ -24,7 +24,7 @@ include_directories(AFTER $ENV{CCINCDIR})
 link_directories($ENV{SGSBASE}/usr/lib64 $ENV{SGSBASE}/lib $ENV{SGSBASE}/tls/lib)
 
 # Flags
-set(CMAKE_CXX_FLAGS "-std=gnu++0x -Wall -Wctor-dtor-privacy -Wold-style-cast -Woverloaded-virtual -Wreorder -Weffc++")
+set(CMAKE_CXX_FLAGS "-std=gnu++0x -Wall -Wctor-dtor-privacy -Wold-style-cast -Woverloaded-virtual -Wreorder")
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
 	set(decaf_OUTPUT_NAME decafd)
