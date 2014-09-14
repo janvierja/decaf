@@ -18,9 +18,17 @@
 #ifndef DECAF_UTIL_CONCURRENT_LOCKS_LOCK_HPP
 #define	DECAF_UTIL_CONCURRENT_LOCKS_LOCK_HPP
 
+#include "decaf/lang/Common.hpp"
+#include "decaf/lang/Object.hpp"
 #include "decaf/util/concurrent/TimeUnit.hpp"
+#include "decaf/util/concurrent/locks/Condition.hpp"
 
-class Lock {
+DECAF_OPEN_NAMESPACE4(decaf, util, concurrent, locks)
+
+/**
+ * 
+ */
+class Lock : public Object {
   public:
     /**
      * Acquires the lock
@@ -51,7 +59,20 @@ class Lock {
      * elapsed before the lock was acquired
      */
     bool tryLock(const uint64_t& t, const TimeUnit* unit) = 0;
+    
+    /**
+     * Returns a new Condition instance that is bound to this Lock instance.
+     * 
+     * Before waiting on the condition the lock must be held by the current 
+     * thread. A call to Condition.await() will atomically release the lock 
+     * before waiting and re-acquire the lock before the wait returns.
+     * 
+     * @return A new Condition instance for this Lock instance
+     */
+    Condition* newCondition() = 0;
 };
+
+DECAF_CLOSE_NAMESPACE4
 
 #endif	/* DECAF_UTIL_CONCURRENT_LOCKS_LOCK_HPP */
 

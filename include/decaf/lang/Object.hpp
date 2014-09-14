@@ -315,6 +315,20 @@ class Object {
         return 0;
     }
 
+    /**
+     * @internal
+     */
+    void enterSynchronizedBlock() {
+        m_monitor.m_mutex.lock();
+    }
+    
+    /**
+     * @internal 
+     */
+    void exitSynchronizedBlock() {
+        m_monitor.m_mutex.unlock();
+    }
+    
     mutable uint64_t m_hashCode;
 
   private:
