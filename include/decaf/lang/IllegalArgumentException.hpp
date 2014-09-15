@@ -14,10 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef DECAF_LANG_ILLEGALARGUMENTEXCEPTION_HPP
-#define	DECAF_LANG_ILLEGALARGUMENTEXCEPTION_HPP
+#ifndef DECAF_ILLEGALARGUMENTEXCEPTION_HPP
+#define	DECAF_ILLEGALARGUMENTEXCEPTION_HPP
 
-#include "decaf/lang/Common.hpp"
+#include "decaf/lang/compatibility.hpp"
 #include "decaf/lang/Object.hpp"
 #include "decaf/lang/RuntimeException.hpp"
 
@@ -76,5 +76,5 @@ class IllegalArgumentException : public RuntimeException, public virtual Object 
 
 DECAF_CLOSE_NAMESPACE2
 
-#endif	/* DECAF_LANG_RUNTIMEEXCEPTION_HPP */
+#endif	/* DECAF_ILLEGALARGUMENTEXCEPTION_HPP */
 

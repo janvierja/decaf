@@ -15,8 +15,8 @@
  * limitations under the License.
  */
 
-#ifndef DECAF_LANG_OBJECT_HPP
-#define DECAF_LANG_OBJECT_HPP
+#ifndef DECAF_OBJECT_HPP
+#define DECAF_OBJECT_HPP
 
 #include <typeinfo>
 #include <cstdint>
@@ -24,7 +24,7 @@
 #include <condition_variable>
 #include <mutex>
 
-#include "decaf/lang/Common.hpp"
+#include "decaf/lang/compatibility.hpp"
 
 DECAF_OPEN_NAMESPACE2(decaf, lang)
 
@@ -352,4 +352,4 @@ class Object {
 
 DECAF_CLOSE_NAMESPACE2
 
-#endif // DECAF_LANG_OBJECT_HPP
+#endif // DECAF_OBJECT_HPP

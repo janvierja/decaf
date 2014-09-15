@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-#ifndef DECAF_UTIL_CONCURRENT_LOCKS_CONDITION_HPP
-#define	DECAF_UTIL_CONCURRENT_LOCKS_CONDITION_HPP
+#ifndef DECAF_CONDITION_HPP
+#define	DECAF_CONDITION_HPP
 
-#include "decaf/lang/Common.hpp"
+#include "decaf/lang/compatibility.hpp"
 #include "decaf/lang/Object.hpp"
 
 DECAF_OPEN_NAMESPACE4(decaf, util, concurrent, locks)
@@ -75,5 +75,5 @@ class Condition : public Object {
 
 DECAF_CLOSE_NAMESPACE4
 
-#endif	/* DECAF_UTIL_CONCURRENT_LOCKS_CONDITION_HPP */
+#endif	/* DECAF_CONDITION_HPP */
 

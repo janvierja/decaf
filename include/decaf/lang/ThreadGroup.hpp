@@ -15,8 +15,8 @@
  * limitations under the License.
  */
 
-#ifndef DECAF_LANG_THREADGROUP_HPP
-#define DECAF_LANG_THREADGROUP_HPP
+#ifndef DECAF_THREADGROUP_HPP
+#define DECAF_THREADGROUP_HPP
 
 #include "decaf/lang/Commmon.hpp"
 
@@ -34,4 +34,4 @@ class ThreadGroup : public virtual Object {
 
 DECAF_CLOSE_NAMESPACE2
 
-#endif // DECAF_LANG_THREADGROUP_HPP
+#endif // DECAF_THREADGROUP_HPP

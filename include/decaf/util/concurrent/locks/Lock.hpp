@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-#ifndef DECAF_UTIL_CONCURRENT_LOCKS_LOCK_HPP
-#define	DECAF_UTIL_CONCURRENT_LOCKS_LOCK_HPP
+#ifndef DECAF_LOCK_HPP
+#define	DECAF_LOCK_HPP
 
-#include "decaf/lang/Common.hpp"
+#include "decaf/lang/compatibility.hpp"
 #include "decaf/lang/Object.hpp"
 #include "decaf/util/concurrent/TimeUnit.hpp"
 #include "decaf/util/concurrent/locks/Condition.hpp"
@@ -74,5 +74,5 @@ class Lock : public Object {
 
 DECAF_CLOSE_NAMESPACE4
 
-#endif	/* DECAF_UTIL_CONCURRENT_LOCKS_LOCK_HPP */
+#endif	/* DECAF_LOCK_HPP */
 

@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-#ifndef DECAF_LANG_THROWABLE_HPP
-#define DECAF_LANG_THROWABLE_HPP
+#ifndef DECAF_THROWABLE_HPP
+#define DECAF_THROWABLE_HPP
 
-#include "decaf/lang/Common.hpp"
+#include "decaf/lang/compatibility.hpp"
 #include "decaf/lang/Object.hpp"
 
 DECAF_OPEN_NAMESPACE2(decaf, lang)
@@ -118,4 +118,4 @@ class Throwable : public Object {
 
 DECAF_CLOSE_NAMESPACE2
 
-#endif // DECAF_LANG_THROWABLE_HPP
+#endif // DECAF_THROWABLE_HPP

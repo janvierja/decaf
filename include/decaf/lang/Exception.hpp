@@ -17,7 +17,7 @@
 #ifndef DECAF_LANG_EXCEPTION_HPP
 #define	DECAF_LANG_EXCEPTION_HPP
 
-#include "decaf/lang/Common.hpp"
+#include "decaf/lang/compatibility.hpp"
 #include "decaf/lang/Object.hpp"
 #include "decaf/lang/Throwable.hpp"
 
@@ -75,5 +75,5 @@ class Exception : public Throwable, public virtual Object {
 
 DECAF_CLOSE_NAMESPACE2
 
-#endif	/* DECAF_LANG_EXCEPTION_HPP */
+#endif	/* DECAF_EXCEPTION_HPP */
 

@@ -15,8 +15,8 @@
  * limitations under the License.
  */
 
-#ifndef DECAF_LANG_THREAD_HPP
-#define DECAF_LANG_THREAD_HPP
+#ifndef DECAF_THREAD_HPP
+#define DECAF_THREAD_HPP
 
 #include "decaf/lang/Commmon.hpp"
 #include "decaf/lang/Runnable.hpp"
@@ -41,4 +41,4 @@ class Thread : public virtual Object, public virtual Runnable {
 
 DECAF_CLOSE_NAMESPACE2
 
-#endif // DECAF_LANG_THREAD_HPP
+#endif // DECAF_THREAD_HPP

@@ -18,7 +18,7 @@
 #ifndef DECAF_LANG_RUNNABLE_HPP
 #define DECAF_LANG_RUNNABLE_HPP
 
-#include "decaf/lang/Common.hpp"
+#include "decaf/lang/compatibility.hpp"
 #include "decaf/lang/Object.hpp"
 
 DECAF_OPEN_NAMESPACE2(decaf, lang)
@@ -50,4 +50,4 @@ class Runnable : public Object {
 
 DECAF_CLOSE_NAMESPACE2
 
-#endif // DECAF_LANG_RUNNABLE_HPP
+#endif // DECAF_RUNNABLE_HPP

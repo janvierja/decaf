@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-#ifndef DECAF_LANG_SYNCHRONIZED_HPP
-#define	DECAF_LANG_SYNCHRONIZED_HPP
+#ifndef DECAF_SYNCHRONIZED_HPP
+#define	DECAF_SYNCHRONIZED_HPP
 
-#include "decaf/lang/Common.hpp"
+#include "decaf/lang/compatibility.hpp"
 #include "decaf/lang/Object.hpp"
 
 DECAF_OPEN_NAMESPACE2(decaf, lang)
@@ -49,5 +49,5 @@ DECAF_CLOSE_NAMESPACE2
 #define synchronized(obj) \
     if (decaf::lang::Synchronized DECAF_UNIQUE_IDENTIFIER(decaf_lock_) = *obj)
 
-#endif	/* DECAF_LANG_SYNCHRONIZED_HPP */
+#endif	/* DECAF_SYNCHRONIZED_HPP */
 

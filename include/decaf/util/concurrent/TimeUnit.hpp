@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-#ifndef DECAF_UTIL_CONCURRENT_TIMEUNIT_H
-#define DECAF_UTIL_CONCURRENT_TIMEUNIT_H
+#ifndef DECAF_TIMEUNIT_H
+#define DECAF_TIMEUNIT_H
 
 #include <cstdint>
 #include <string>
 
-#include "decaf/lang/Common.hpp"
+#include "decaf/lang/compatibility.hpp"
 #include "decaf/lang/Object.hpp"
 #include "decaf/util/SleepingStopwatch.hpp"
 
@@ -466,4 +466,4 @@ class Days : public TimeUnit {
 DECAF_CLOSE_NAMESPACE
 DECAF_CLOSE_NAMESPACE3
 
-#endif // DECAF_UTIL_CONCURRENT_TIMEUNIT_H
+#endif // DECAF_TIMEUNIT_H
