@@ -39,6 +39,7 @@ add_definitions(-D_REENTRANT)
 
 add_library(decaf SHARED ${decaf_LIB_SRCS})
 target_include_directories(decaf PRIVATE ${PROJECT_SOURCE_DIR}/include $ENV{BOOST}/include)
+target_link_libraries(decaf pthread)
 set_target_properties(decaf PROPERTIES POSITION_INDEPENDENT_CODE ON)
 set_target_properties(decaf PROPERTIES VERSION ${decaf_VERSION})
 set_target_properties(decaf PROPERTIES OUTPUT_NAME ${decaf_OUTPUT_NAME})

@@ -27,25 +27,27 @@ DECAF_OPEN_NAMESPACE2(decaf, lang)
  * @internal
  */
 class Synchronized {
-    public:
-      Synchronized(Object& lockable) : m_lockable(lockable) {
-          m_lockable.enterSynchronizedBlock();
-      }
-      
-      ~Synchronized() {
-          m_lockable.exitSynchronizedBlock();
-      }
-      
-      operator bool() const {
-          return true;
-      }
-    private:
-      Object& m_lockable;
+  public:
+
+    Synchronized(Object& lockable) : m_lockable(lockable) {
+        m_lockable.enterSynchronizedBlock();
+    }
+
+    ~Synchronized() {
+        m_lockable.exitSynchronizedBlock();
+    }
+
+    operator bool() const {
+        return true;
+    }
+  private:
+    Object& m_lockable;
 };
 
 DECAF_CLOSE_NAMESPACE2
-        
-#define synchronized(cls)  if (Synchronized obj##_lock = *static_cast<cls*>(this))
+
+#define synchronized(obj) \
+    if (decaf::lang::Synchronized DECAF_UNIQUE_IDENTIFIER(decaf_lock_) = *obj)
 
 #endif	/* DECAF_LANG_SYNCHRONIZED_HPP */
 

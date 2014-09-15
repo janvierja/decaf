@@ -34,12 +34,12 @@ class Lock : public Object {
      * Acquires the lock
      */
     void lock() = 0;
-    
+
     /**
      * Releases the lock
      */
     void unlock() = 0;
-    
+
     /**
      * Acquires the lock only if it is free at the time of invocation.
      * Acquires the lock if it is available and returns immediately with the 
@@ -48,7 +48,7 @@ class Lock : public Object {
      * @return true if the lock was acquired, false, otherwise
      */
     bool tryLock() = 0;
-    
+
     /**
      * Acquires the lock if it is free within the given waiting time and the 
      * current thread has not been interrupted.
@@ -59,7 +59,7 @@ class Lock : public Object {
      * elapsed before the lock was acquired
      */
     bool tryLock(const uint64_t& t, const TimeUnit* unit) = 0;
-    
+
     /**
      * Returns a new Condition instance that is bound to this Lock instance.
      * 

@@ -29,6 +29,7 @@ DECAF_OPEN_NAMESPACE2(decaf, lang)
  */
 class RuntimeException : public Exception, public virtual Object {
   public:
+
     /**
      * Constructs a new runtime exception with null as its detail message.
      * The cause is not initialized, and may subsequently be initialized by 
@@ -68,7 +69,7 @@ class RuntimeException : public Exception, public virtual Object {
      *               and indicates that the cause is nonexistent or unknown.)
      */
     explicit RuntimeException(Throwable* cause) : Exception(cause) { }
-    
+
     virtual ~RuntimeException() = default;
 }; // class RuntimeException
 

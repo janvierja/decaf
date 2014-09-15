@@ -30,6 +30,7 @@ DECAF_OPEN_NAMESPACE2(decaf, lang)
  */
 class IllegalArgumentException : public RuntimeException, public virtual Object {
   public:
+
     /**
      * Constructs a new IllegalArgumentException with null as its detail message.
      * The cause is not initialized, and may subsequently be initialized by 
@@ -69,7 +70,7 @@ class IllegalArgumentException : public RuntimeException, public virtual Object 
      *               and indicates that the cause is nonexistent or unknown.)
      */
     explicit IllegalArgumentException(Throwable* cause) : RuntimeException(cause) { }
-    
+
     virtual ~IllegalArgumentException() = default;
 }; // class RuntimeException
 

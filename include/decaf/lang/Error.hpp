@@ -34,6 +34,7 @@ DECAF_OPEN_NAMESPACE2(decaf, lang)
  */
 class Error : public Throwable, public virtual Object {
   public:
+
     /**
      * Constructs a new error with null as its detail message.
      * The cause is not initialized, and may subsequently be initialized by 
@@ -73,7 +74,7 @@ class Error : public Throwable, public virtual Object {
      *               and indicates that the cause is nonexistent or unknown.)
      */
     explicit Error(Throwable* cause) : Throwable(cause) { }
-    
+
     virtual ~Error() = default;
 }; // class Exception
 

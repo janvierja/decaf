@@ -29,6 +29,7 @@ DECAF_OPEN_NAMESPACE2(decaf, lang)
  */
 class Exception : public Throwable, public virtual Object {
   public:
+
     /**
      * Constructs a new exception with null as its detail message.
      * The cause is not initialized, and may subsequently be initialized by 
@@ -68,7 +69,7 @@ class Exception : public Throwable, public virtual Object {
      *               and indicates that the cause is nonexistent or unknown.)
      */
     explicit Exception(Throwable* cause) : Throwable(cause) { }
-    
+
     virtual ~Exception() = default;
 }; // class Exception
 

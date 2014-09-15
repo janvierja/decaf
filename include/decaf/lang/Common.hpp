@@ -20,7 +20,10 @@
 
 // ----- namespace macros -----------------------------------------------------
 
-namespace decaf { namespace lang { } }
+namespace decaf {
+namespace lang {
+}
+}
 #define DECAF_OPEN_NAMESPACE(ns) namespace ns { \
     using namespace decaf::lang;
 

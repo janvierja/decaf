@@ -21,8 +21,8 @@
 #include <typeinfo>
 #include <cstdint>
 #include <string>
-#include <mutex>
 #include <condition_variable>
+#include <mutex>
 
 #include "decaf/lang/Common.hpp"
 
@@ -36,7 +36,7 @@ class Object {
   public:
     typedef std::type_info Type;
 
-    Object() throw () : m_hashCode(0) { }
+    Object() throw () : m_hashCode(0), m_lock(m_monitor.m_mutex, std::defer_lock) { }
     virtual ~Object() = default;
 
     /**
@@ -244,7 +244,7 @@ class Object {
      *
      * This method should only be called by a thread that is the owner of this object's monitor.
      */
-    static void notify();
+    void notify();
 
     /**
      * Wakes up all threads that are waiting on this object's monitor. A thread waits on an object's
@@ -258,8 +258,15 @@ class Object {
      * This method should only be called by a thread that is the owner of this object's monitor. See the
      * notify method for a description of the ways in which a thread can become the owner of a monitor.
      */
-    static void notifyAll();
+    void notifyAll();
 
+    /**
+     * Causes the current thread to wait until another thread invokes the notify() method
+     * or the notifyAll() method for this object. In other words, this method behaves exactly as if
+     * it simply performs the call wait(0).
+     */
+    void wait();
+    
     /**
      * Causes the current thread to wait until either another thread invokes the notify() method or the
      * notifyAll() method for this object, or a specified amount of time has elapsed.
@@ -268,7 +275,7 @@ class Object {
      *
      * @param timeout the maximum time to wait in milliseconds
      */
-    static void wait(uint64_t timeout);
+    void wait(uint64_t timeout);
 
     /**
      * Causes the current thread to wait until another thread invokes the notify() method or the notifyAll()
@@ -289,9 +296,25 @@ class Object {
      * @param timeout the maximum time to wait in milliseconds
      * @param nanos additional time, in nanoseconds range 0-999999
      */
-    static void wait(uint64_t timeout, uint64_t nanos);
+    void wait(uint64_t timeout, uint64_t nanos);
+
+    
+    /**
+     * @internal
+     */
+    void enterSynchronizedBlock() {
+        m_lock.lock();
+    }
+
+    /**
+     * @internal 
+     */
+    void exitSynchronizedBlock() {
+        m_lock.unlock();
+    }
 
   protected:
+
     /**
      * Creates and returns a copy of this object. The precise meaning of "copy" may depend
      * on the class of the object. The general intent is that, for any object x, the expression:
@@ -315,28 +338,16 @@ class Object {
         return 0;
     }
 
-    /**
-     * @internal
-     */
-    void enterSynchronizedBlock() {
-        m_monitor.m_mutex.lock();
-    }
-    
-    /**
-     * @internal 
-     */
-    void exitSynchronizedBlock() {
-        m_monitor.m_mutex.unlock();
-    }
-    
     mutable uint64_t m_hashCode;
 
   private:
-    mutable std::recursive_mutex m_mutex;
     struct Monitor {
-        std::recursive_mutex        m_mutex;
+        std::recursive_mutex m_mutex;
         std::condition_variable_any m_conditionVariable;
     } m_monitor;
+
+    std::unique_lock<std::recursive_mutex> m_lock;
+    mutable std::recursive_mutex m_mutex;
 };
 
 DECAF_CLOSE_NAMESPACE2

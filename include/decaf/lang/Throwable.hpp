@@ -58,7 +58,7 @@ class Throwable : public Object {
      * and detail message of cause). This constructor is useful for throwables that
      * are little more than wrappers for other throwables
      */
-    explicit Throwable(Throwable* cause) : 
+    explicit Throwable(Throwable* cause) :
     m_message((cause == 0 ? "" : cause->toString())), m_cause(cause) { }
 
     virtual ~Throwable() = default;
