@@ -303,14 +303,14 @@ class Object {
      * @internal
      */
     void enterSynchronizedBlock() {
-        m_lock.lock();
+        m_monitor.m_mutex.lock();
     }
 
     /**
      * @internal 
      */
     void exitSynchronizedBlock() {
-        m_lock.unlock();
+        m_monitor.m_mutex.unlock();
     }
 
   protected:

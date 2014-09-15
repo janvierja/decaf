@@ -74,19 +74,19 @@ void Object::notifyAll() {
 // ----------------------------------------------------------------------------
 
 void Object::wait() {
-    m_monitor.m_conditionVariable.wait(m_lock);
+    m_monitor.m_conditionVariable.wait(m_monitor.m_mutex);
 }
 
 // ----------------------------------------------------------------------------
 
 void Object::wait(uint64_t timeout) {
-    m_monitor.m_conditionVariable.wait_for(m_lock, milliseconds(timeout));
+    m_monitor.m_conditionVariable.wait_for(m_monitor.m_mutex, milliseconds(timeout));
 }
 
 // ----------------------------------------------------------------------------
 
 void Object::wait(uint64_t timeout, uint64_t nanos) {
-    m_monitor.m_conditionVariable.wait_for(m_lock,
+    m_monitor.m_conditionVariable.wait_for(m_monitor.m_mutex,
         (milliseconds(timeout) + nanoseconds(nanos)));
 }
 
