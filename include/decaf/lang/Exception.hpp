@@ -57,7 +57,7 @@ class Exception : public Throwable, public virtual Object {
      *               and indicates that the cause is nonexistent or unknown.)
      */
     explicit Exception(const std::string& message, Throwable* cause) :
-    Throwable(message, cause) { }
+      Throwable(message, cause) { }
 
     /**
      * Constructs a new exception with the specified cause and a detail message 

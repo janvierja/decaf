@@ -58,7 +58,7 @@ class IllegalStateException : public RuntimeException, public virtual Object {
      *               and indicates that the cause is nonexistent or unknown.)
      */
     explicit IllegalStateException(const std::string& message, Throwable* cause) :
-    RuntimeException(message, cause) { }
+      RuntimeException(message, cause) { }
 
     /**
      * Constructs a new IllegalStateException with the specified cause and a detail message 

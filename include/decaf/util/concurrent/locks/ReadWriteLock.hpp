@@ -25,19 +25,19 @@
 DECAF_OPEN_NAMESPACE4(decaf, util, concurrent, locks)
 
 class ReadWriteLock : public virtual Object {
-    public:
-      /**
-       * Returns the lock used for reading.
-       * @return the lock used for reading
-       */
-      virtual Lock* readLock() = 0;
-      
-      /**
-       * Returns the lock used for writing.
-       * @return the lock used for writing
-       */
-      virtual Lock* writeLock() = 0;
-      
+  public:
+    /**
+     * Returns the lock used for reading.
+     * @return the lock used for reading
+     */
+    virtual Lock* readLock() = 0;
+
+    /**
+     * Returns the lock used for writing.
+     * @return the lock used for writing
+     */
+    virtual Lock* writeLock() = 0;
+
 };
 
 DECAF_CLOSE_NAMESPACE4

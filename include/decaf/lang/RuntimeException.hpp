@@ -57,7 +57,7 @@ class RuntimeException : public Exception, public virtual Object {
      *               and indicates that the cause is nonexistent or unknown.)
      */
     explicit RuntimeException(const std::string& message, Throwable* cause) :
-    Exception(message, cause) { }
+      Exception(message, cause) { }
 
     /**
      * Constructs a new runtime exception with the specified cause and a detail message 

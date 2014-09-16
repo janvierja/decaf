@@ -58,7 +58,7 @@ class IllegalArgumentException : public RuntimeException, public virtual Object 
      *               and indicates that the cause is nonexistent or unknown.)
      */
     explicit IllegalArgumentException(const std::string& message, Throwable* cause) :
-    RuntimeException(message, cause) { }
+      RuntimeException(message, cause) { }
 
     /**
      * Constructs a new IllegalArgumentException with the specified cause and a detail message 

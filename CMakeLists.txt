@@ -2,12 +2,12 @@ cmake_minimum_required(VERSION 3.0)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
 project(decaf CXX)
+include(CheckCXXCompilerFlag)
 
 set(decaf_VERSION_MAJOR 0)
 set(decaf_VERSION_MINOR 1)
 set(decaf_VERSION_PATCH 0)
 set(decaf_VERSION "${decaf_VERSION_MAJOR}.${decaf_VERSION_MINOR}.${decaf_VERSION_PATCH}")
-
 
 # Build in Release mode by default
 if(NOT DEFINED CMAKE_BUILD_TYPE)
@@ -25,7 +25,18 @@ include_directories(AFTER $ENV{CCINCDIR})
 link_directories($ENV{SGSBASE}/usr/lib64 $ENV{SGSBASE}/lib $ENV{SGSBASE}/tls/lib)
 
 # Flags
-set(CMAKE_CXX_FLAGS "-std=gnu++11 -Wall -Wctor-dtor-privacy -Wold-style-cast -Woverloaded-virtual -Wreorder")
+CHECK_CXX_COMPILER_FLAG("-std=gnu++11" COMPILER_SUPPORTS_CXX11)
+CHECK_CXX_COMPILER_FLAG("-std=gnu++0x" COMPILER_SUPPORTS_CXX0X)
+
+if(COMPILER_SUPPORTS_CXX11)
+        set(CMAKE_CXX_FLAGS "-std=gnu++11 -pthread -Wall -Wctor-dtor-privacy -Wold-style-cast -Woverloaded-virtual -Wreorder")
+        add_definitions(-DDECAF_CXX11)
+elseif(COMPILER_SUPPORTS_CXX0X)
+        set(CMAKE_CXX_FLAGS "-std=gnu++0x -pthread -Wall -Wctor-dtor-privacy -Wold-style-cast -Woverloaded-virtual -Wreorder")
+else()
+        set(CMAKE_CXX_FLAGS "-pthread -Wall -Wctor-dtor-privacy -Wold-style-cast -Woverloaded-virtual -Wreorder")
+	message(STATUS, "The compiler ${CMAKE_CXX_COMPILER} has no C++11/14 support. Consider using a different C++ compiler.")
+endif()
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
 	set(decaf_OUTPUT_NAME decafd)

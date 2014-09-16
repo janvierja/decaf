@@ -62,7 +62,7 @@ class Error : public Throwable, public virtual Object {
      *               and indicates that the cause is nonexistent or unknown.)
      */
     explicit Error(const std::string& message, Throwable* cause) :
-    Throwable(message, cause) { }
+      Throwable(message, cause) { }
 
     /**
      * Constructs a new error with the specified cause and a detail message 

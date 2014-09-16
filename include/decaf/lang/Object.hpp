@@ -21,13 +21,8 @@
 #include <typeinfo>
 #include <cstdint>
 #include <string>
-
-#if defined(DECAF_CC11)
-#include <condition_variable>
-#include <mutex>
-#else
 #include <pthread.h>
-#endif
+
 
 #include "decaf/lang/compatibility.hpp"
 
@@ -41,14 +36,11 @@ class Object {
   public:
     typedef std::type_info Type;
 
-#if defined(DECAF_CC11)
-    Object() throw () : m_hashCode(0), m_lock(m_monitor.m_mutex, std::defer_lock) { }
-#else
     Object() throw () : m_hashCode(0),
-        m_monitor.m_mutex(PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP),
-        m_monitor.m_condition(PTHREAD_COND_INITIALIZER),
-        m_mutex(PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP) { }
-#endif
+      m_mutex(PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP),
+      m_monitorMutex(PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP),
+      m_monitorCondition(PTHREAD_COND_INITIALIZER) { }
+
     virtual ~Object() = default;
 
     /**
@@ -278,7 +270,7 @@ class Object {
      * it simply performs the call wait(0).
      */
     void wait();
-    
+
     /**
      * Causes the current thread to wait until either another thread invokes the notify() method or the
      * notifyAll() method for this object, or a specified amount of time has elapsed.
@@ -310,7 +302,6 @@ class Object {
      */
     void wait(uint64_t timeout, uint64_t nanos);
 
-    
     /**
      * Creates and returns a copy of this object. The precise meaning of "copy" may depend
      * on the class of the object. The general intent is that, for any object x, the expression:
@@ -333,44 +324,24 @@ class Object {
     virtual Object* clone() {
         return 0;
     }
-    
+
     /**
      * @internal
      */
-    void enterSynchronizedBlock() {
-#if defined(DECAF_CC11)
-        m_monitor.m_mutex.lock();
-#endif
-    }
+    void enterSynchronizedBlock() { }
 
     /**
-     * @internal 
+     * @internal
      */
-    void exitSynchronizedBlock() {
-#if defined(DECAF_CC11)
-        m_monitor.m_mutex.unlock();
-#endif
-    }
+    void exitSynchronizedBlock() { }
 
   protected:
     mutable uint64_t m_hashCode;
 
   private:
-#if defined(DECAF_CC11)
-    struct Monitor {
-        std::recursive_mutex m_mutex;
-        std::condition_variable_any m_condition;
-    } m_monitor;
-
-    std::unique_lock<std::recursive_mutex> m_lock;
-    mutable std::recursive_mutex m_mutex;
-#endif
-    struct Monitor {
-        pthread_mutex_t     m_mutex;
-        pthread_cond_t      m_condition;
-    } m_monitor;
-    
     mutable pthread_mutex_t m_mutex;
+    pthread_mutex_t m_monitorMutex;
+    pthread_cond_t m_monitorCondition;
 };
 
 DECAF_CLOSE_NAMESPACE2

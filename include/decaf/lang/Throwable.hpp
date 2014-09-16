@@ -42,7 +42,7 @@ class Throwable : public virtual Object {
      * to initCause(decaf::lang::Throwable*).
      */
     explicit Throwable(const std::string& message) :
-    m_message(message), m_cause(this) { }
+      m_message(message), m_cause(this) { }
 
     /**
      * Constructs a new throwable with the specified detail message and cause.
@@ -50,7 +50,7 @@ class Throwable : public virtual Object {
      * incorporated in this throwable's detail message.
      */
     explicit Throwable(const std::string& message, Throwable* cause) :
-    m_message(message), m_cause(cause) { }
+      m_message(message), m_cause(cause) { }
 
     /**
      * Constructs a new throwable with the specified cause and a detail message of
@@ -59,7 +59,7 @@ class Throwable : public virtual Object {
      * are little more than wrappers for other throwables
      */
     explicit Throwable(Throwable* cause) :
-    m_message((cause == 0 ? "" : cause->toString())), m_cause(cause) { }
+      m_message((cause == 0 ? "" : cause->toString())), m_cause(cause) { }
 
     virtual ~Throwable() = default;
 
