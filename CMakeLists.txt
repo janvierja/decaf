@@ -34,7 +34,8 @@ else()
 endif()
 
 set(decaf_LIB_SRCS
-	src/lang/Object.cpp)
+	src/lang/Object.cpp
+	src/lang/Throwable.cpp)
 
 add_definitions(-D_REENTRANT)
 

@@ -33,12 +33,12 @@ class Lock : public Object {
     /**
      * Acquires the lock
      */
-    void lock() = 0;
+    virtual void lock() = 0;
 
     /**
      * Releases the lock
      */
-    void unlock() = 0;
+    virtual void unlock() = 0;
 
     /**
      * Acquires the lock only if it is free at the time of invocation.
@@ -47,7 +47,7 @@ class Lock : public Object {
      * immediately with the value false.
      * @return true if the lock was acquired, false, otherwise
      */
-    bool tryLock() = 0;
+    virtual bool tryLock() = 0;
 
     /**
      * Acquires the lock if it is free within the given waiting time and the 
@@ -58,7 +58,7 @@ class Lock : public Object {
      * @return true if the lock was acquired and false if the waiting time 
      * elapsed before the lock was acquired
      */
-    bool tryLock(const uint64_t& t, const TimeUnit* unit) = 0;
+    virtual bool tryLock(const uint64_t& t, const TimeUnit* unit) = 0;
 
     /**
      * Returns a new Condition instance that is bound to this Lock instance.
@@ -69,7 +69,7 @@ class Lock : public Object {
      * 
      * @return A new Condition instance for this Lock instance
      */
-    Condition* newCondition() = 0;
+    virtual Condition* newCondition() = 0;
 };
 
 DECAF_CLOSE_NAMESPACE4

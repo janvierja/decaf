@@ -21,8 +21,13 @@
 #include <typeinfo>
 #include <cstdint>
 #include <string>
+
+#if defined(DECAF_CC11)
 #include <condition_variable>
 #include <mutex>
+#else
+#include <pthread.h>
+#endif
 
 #include "decaf/lang/compatibility.hpp"
 
@@ -36,7 +41,14 @@ class Object {
   public:
     typedef std::type_info Type;
 
+#if defined(DECAF_CC11)
     Object() throw () : m_hashCode(0), m_lock(m_monitor.m_mutex, std::defer_lock) { }
+#else
+    Object() throw () : m_hashCode(0),
+        m_monitor.m_mutex(PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP),
+        m_monitor.m_condition(PTHREAD_COND_INITIALIZER),
+        m_mutex(PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP) { }
+#endif
     virtual ~Object() = default;
 
     /**
@@ -300,22 +312,6 @@ class Object {
 
     
     /**
-     * @internal
-     */
-    void enterSynchronizedBlock() {
-        m_monitor.m_mutex.lock();
-    }
-
-    /**
-     * @internal 
-     */
-    void exitSynchronizedBlock() {
-        m_monitor.m_mutex.unlock();
-    }
-
-  protected:
-
-    /**
      * Creates and returns a copy of this object. The precise meaning of "copy" may depend
      * on the class of the object. The general intent is that, for any object x, the expression:
      *
@@ -332,22 +328,49 @@ class Object {
      * will be true, this is not an absolute requirement.
      *
      * @return A pointer to the clone of this object. It is the client's responsibility to release
-     * the pointer.
+     * the pointer. Returns NULL if clone is not supported.
      */
     virtual Object* clone() {
         return 0;
     }
+    
+    /**
+     * @internal
+     */
+    void enterSynchronizedBlock() {
+#if defined(DECAF_CC11)
+        m_monitor.m_mutex.lock();
+#endif
+    }
 
+    /**
+     * @internal 
+     */
+    void exitSynchronizedBlock() {
+#if defined(DECAF_CC11)
+        m_monitor.m_mutex.unlock();
+#endif
+    }
+
+  protected:
     mutable uint64_t m_hashCode;
 
   private:
+#if defined(DECAF_CC11)
     struct Monitor {
         std::recursive_mutex m_mutex;
-        std::condition_variable_any m_conditionVariable;
+        std::condition_variable_any m_condition;
     } m_monitor;
 
     std::unique_lock<std::recursive_mutex> m_lock;
     mutable std::recursive_mutex m_mutex;
+#endif
+    struct Monitor {
+        pthread_mutex_t     m_mutex;
+        pthread_cond_t      m_condition;
+    } m_monitor;
+    
+    mutable pthread_mutex_t m_mutex;
 };
 
 DECAF_CLOSE_NAMESPACE2

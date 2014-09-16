@@ -116,6 +116,10 @@
 #   error "Decaf for C++ does not support this compiler or compiler version."
 #endif
 
+#if __cplusplus > 199711L
+#   define DECAF_CC11
+#endif
+
 // ----- namespace macros -----------------------------------------------------
 
 namespace decaf { namespace lang { } }

@@ -27,7 +27,7 @@ DECAF_OPEN_NAMESPACE2(decaf, lang)
  * Throwable is the base class of all errors and exceptions in the 
  * decaf class library.
  */
-class Throwable : public Object {
+class Throwable : public virtual Object {
   public:
 
     /**
@@ -94,7 +94,7 @@ class Throwable : public Object {
      *     * ": " (a colon and a space)
      *     * the result of invoking this object's getMessage() method
      */
-    std::string toString() {
+    virtual std::string toString() const {
         std::string name = getTypeName();
         std::string message = getMessage();
         return (((!message.empty()) ? name + ": " + message : name));

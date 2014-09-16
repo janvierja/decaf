@@ -7,12 +7,12 @@ DECAF_OPEN_NAMESPACE2(decaf, lang)
 
 // ----------------------------------------------------------------------------
 Throwable* Throwable::initCause(Throwable* cause) {
-    if (this->cause != this)
+    if (this->m_cause != this)
         throw IllegalStateException("Can't overwrite cause");
     if (cause == this)
         throw IllegalArgumentException("Self-causation not permitted");
 
-    this->cause = cause;
+    this->m_cause = cause;
     return this;
 }
 

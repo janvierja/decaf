@@ -31,7 +31,7 @@ class Condition : public Object {
     /**
      * Causes the current thread to wait until it is signaled.
      */
-    void await() = 0;
+    virtual void await() = 0;
 
     /**
      * Causes the current thread to wait until it is signalled or interrupted,
@@ -42,7 +42,7 @@ class Condition : public Object {
      * @return false if the waiting time detectably elapsed before return 
      * from the method, else true
      */
-    bool await(const uint64_t& t, const TimeUnit* unit) = 0;
+    virtual bool await(const uint64_t& t, const TimeUnit* unit) = 0;
 
     /**
      * Causes the current thread to wait until it is signalled or interrupted,
@@ -55,7 +55,7 @@ class Condition : public Object {
      * the desired time. A value less than or equal to zero indicates that no 
      * time remains.
      */
-    int64_t awaitNanos(const uint64_t& nanosTimeout) = 0;
+    virtual int64_t awaitNanos(const uint64_t& nanosTimeout) = 0;
 
     /**
      * Wakes up one waiting thread.
@@ -63,14 +63,14 @@ class Condition : public Object {
      * waking up. That thread must then re-acquire the lock before returning 
      * from await.
      */
-    void signal() = 0;
+    virtual void signal() = 0;
 
     /**
      * Wakes up all waiting threads.
      * If any threads are waiting on this condition then they are all woken up.
      * Each thread must re-acquire the lock before it can return from await.
      */
-    void signalAll() = 0;
+    virtual void signalAll() = 0;
 };
 
 DECAF_CLOSE_NAMESPACE4
