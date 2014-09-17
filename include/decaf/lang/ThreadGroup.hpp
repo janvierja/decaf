@@ -29,7 +29,7 @@ DECAF_OPEN_NAMESPACE2(decaf, lang)
  *
  * A thread is allowed to access information about its own thread group, but not to access information about its thread group's parent thread group or any other thread groups.
  */
-class ThreadGroup : public virtual Object {
+class ThreadGroup : public Object {
 } // class Thread
 
 DECAF_CLOSE_NAMESPACE2

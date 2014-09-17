@@ -26,10 +26,55 @@
 DECAF_OPEN_NAMESPACE4(decaf, util, concurrent, locks)
 
 /**
+ * Lock implementations provide more extensive locking operations than can be
+ * obtained using synchronized methods and statements. They allow more flexible
+ * structuring, may have quite different properties, and may support multiple
+ * associated Condition objects.
  * 
+ * A lock is a tool for controlling access to a shared resource by multiple
+ * threads. Commonly, a lock provides exclusive access to a shared resource:
+ * only one thread at a time can acquire the lock and all access to the shared
+ * resource requires that the lock be acquired first. However, some locks may
+ * allow concurrent access to a shared resource, such as the read lock of
+ * a ReadWriteLock.
+ * 
+ * The use of synchronized statements makes it much easier to program with
+ * monitor locks, and helps avoid many common programming errors involving locks,
+ * there are occasions where you need to work with locks in a more flexible way.
+ * For example, some algorithms for traversing concurrently accessed data structures
+ * require the use of "hand-over-hand" or "chain locking": you acquire the lock
+ * of node A, then node B, then release A and acquire C, then release B and acquire
+ * D and so on. Implementations of the Lock interface enable the use of such
+ * techniques by allowing a lock to be acquired and released in different scopes,
+ * and allowing multiple locks to be acquired and released in any order.
+ * 
+ * With this increased flexibility comes additional responsibility. The absence of
+ * block-structured locking removes the automatic release of locks that occurs with
+ * synchronized statements. In most cases, the following idiom should be used:
+ * 
+ * @code{.cpp}
+ *    Lock* l = ...;
+ *    l->lock();
+ *    try {
+ *        // access the resource protected by this lock
+ *    } catch(...) {
+ *        l->unlock();
+ *    }
+ * @endcode
+ * 
+ * When locking and unlocking occur in different scopes, care must be taken to
+ * ensure that all code that is executed while the lock is held is protected by
+ * try-catch to ensure that the lock is released when necessary.
+ * 
+ * Lock implementations provide additional functionality over the use of
+ * synchronized statements by providing a non-blocking attempt to acquire a
+ * lock (tryLock()), and an attempt to acquire the lock that can
+ * timeout (tryLock(long, TimeUnit)). 
  */
 class Lock : public Object {
   public:
+    virtual ~Lock() { this->unlock(); }
+    
     /**
      * Acquires the lock
      */

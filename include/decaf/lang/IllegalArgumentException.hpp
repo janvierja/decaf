@@ -18,7 +18,6 @@
 #define	DECAF_ILLEGALARGUMENTEXCEPTION_HPP
 
 #include "decaf/lang/compatibility.hpp"
-#include "decaf/lang/Object.hpp"
 #include "decaf/lang/RuntimeException.hpp"
 
 DECAF_OPEN_NAMESPACE2(decaf, lang)
@@ -28,7 +27,7 @@ DECAF_OPEN_NAMESPACE2(decaf, lang)
  * In other words, the Java environment or Java application is not in an
  * appropriate state for the requested operation.
  */
-class IllegalArgumentException : public RuntimeException, public virtual Object {
+class IllegalArgumentException : public RuntimeException {
   public:
 
     /**

@@ -20,11 +20,11 @@
 
 #include "decaf/lang/compatibility.hpp"
 #include "decaf/lang/Object.hpp"
-#include "decaf/util/concurrent/locks/Lock.hpp"
+
 
 DECAF_OPEN_NAMESPACE4(decaf, util, concurrent, locks)
 
-class ReadWriteLock : public virtual Object {
+class ReadWriteLock : public Object {
   public:
     /**
      * Returns the lock used for reading.

@@ -1,6 +1,7 @@
 #include <cxxabi.h>
 
 #include "decaf/lang/Object.hpp"
+#include "decaf/lang/CloneNotSupportedException.hpp"
 
 DECAF_OPEN_NAMESPACE2(decaf, lang)
 
@@ -82,6 +83,12 @@ void Object::wait(uint64_t timeout) {
 
 void Object::wait(uint64_t timeout, uint64_t nanos) {
 
+}
+
+// ----------------------------------------------------------------------------
+
+Object* clone() {
+    throw CloneNotSupportedException();
 }
 
 DECAF_CLOSE_NAMESPACE2

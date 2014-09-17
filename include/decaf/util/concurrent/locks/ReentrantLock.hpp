@@ -23,7 +23,7 @@
 
 DECAF_OPEN_NAMESPACE4(decaf, util, concurrent, locks)
 
-class ReentrantLock : public Lock, public virtual Object {
+class ReentrantLock : public Lock {
   public:
     ReentrantLock();
     ReentrantLock(const ReentrantLock& orig);

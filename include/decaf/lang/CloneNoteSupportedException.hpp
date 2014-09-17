@@ -14,44 +14,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef DECAF_ERROR_HPP
-#define	DECAF_ERROR_HPP
+#ifndef DECAF_CLONENOTSUPPORTEDEXCEPTION_HPP
+#define	DECAF_CLONENOTSUPPORTEDEXCEPTION_HPP
 
 #include "decaf/lang/compatibility.hpp"
-#include "decaf/lang/Throwable.hpp"
+#include "decaf/lang/Exception.hpp"
 
 DECAF_OPEN_NAMESPACE2(decaf, lang)
 
 /**
- * An Error is a subclass of Throwable that indicates serious problems that a 
- * reasonable application should not try to catch. Most such errors are 
- * abnormal conditions.
- * 
- * A method is not required to declare in its throws clause any subclasses of 
- * Error that might be thrown during the execution of the method but not caught,
- * since these errors are abnormal conditions that should never occur.
+ * CloneNotSupportedException is the base class of those exceptions that can be thrown 
+ * during the normal operation of the framework. 
  */
-class Error : public Throwable {
+class CloneNotSupportedException : public Exception {
   public:
 
     /**
-     * Constructs a new error with null as its detail message.
+     * Constructs a new runtime exception with null as its detail message.
      * The cause is not initialized, and may subsequently be initialized by 
      * a call to Throwable.initCause(decaf::lang::Throwable).
      */
-    Error() : Throwable() { }
+    CloneNotSupportedException() : Exception() { }
 
     /**
-     * Constructs a new error with the specified detail message. The cause
-     * is not initialized, and may subsequently be initialized by a call to 
-     * Throwable.initCause(decaf::.lang::Throwable).
+     * Constructs a new runtime exception with the specified detail message. 
+     * The cause is not initialized, and may subsequently be initialized by a
+     * call to Throwable.initCause(decaf::.lang::Throwable).
      * @param message the detail message. The detail message is saved for later
      *                 retrieval by the Throwable.getMessage() method.
      */
-    explicit Error(const std::string& message) : Throwable(message) { }
+    explicit CloneNotSupportedException(const std::string& message) : Exception(message) { }
 
     /**
-     * Constructs a new error with the specified detail message and cause.
+     * Constructs a new runtime exception with the specified detail message and cause.
      * Note that the detail message associated with cause is not automatically
      * incorporated in this exception's detail message.
      * @param message the detail message. The detail message is saved for later
@@ -60,11 +55,11 @@ class Error : public Throwable {
      *               Throwable.getCause() method). (A null value is permitted,
      *               and indicates that the cause is nonexistent or unknown.)
      */
-    explicit Error(const std::string& message, Throwable* cause) :
-      Throwable(message, cause) { }
+    explicit CloneNotSupportedException(const std::string& message, Throwable* cause) :
+      Exception(message, cause) { }
 
     /**
-     * Constructs a new error with the specified cause and a detail message 
+     * Constructs a new runtime exception with the specified cause and a detail message 
      * of (cause==null ? null : cause.toString()) (which typically contains the 
      * class and detail message of cause). This constructor is useful for 
      * exceptions that are little more than wrappers for other throwables
@@ -72,12 +67,12 @@ class Error : public Throwable {
      *               Throwable.getCause() method). (A null value is permitted,
      *               and indicates that the cause is nonexistent or unknown.)
      */
-    explicit Error(Throwable* cause) : Throwable(cause) { }
+    explicit CloneNotSupportedException(Throwable* cause) : Exception(cause) { }
 
-    virtual ~Error() = default;
-}; // class Exception
+    virtual ~CloneNotSupportedException() = default;
+}; // class CloneNotSupportedException
 
 DECAF_CLOSE_NAMESPACE2
 
-#endif	/* DECAF_ERROR_HPP */
+#endif	/* DECAF_CLONENOTSUPPORTEDEXCEPTION_HPP */
 

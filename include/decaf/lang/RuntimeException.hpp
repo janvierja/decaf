@@ -18,7 +18,6 @@
 #define	DECAF_RUNTIMEEXCEPTION_HPP
 
 #include "decaf/lang/compatibility.hpp"
-#include "decaf/lang/Object.hpp"
 #include "decaf/lang/Exception.hpp"
 
 DECAF_OPEN_NAMESPACE2(decaf, lang)
@@ -27,7 +26,7 @@ DECAF_OPEN_NAMESPACE2(decaf, lang)
  * RuntimeException is the base class of those exceptions that can be thrown 
  * during the normal operation of the framework. 
  */
-class RuntimeException : public Exception, public virtual Object {
+class RuntimeException : public Exception {
   public:
 
     /**

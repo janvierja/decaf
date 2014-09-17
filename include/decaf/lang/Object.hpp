@@ -23,7 +23,6 @@
 #include <string>
 #include <pthread.h>
 
-
 #include "decaf/lang/compatibility.hpp"
 
 DECAF_OPEN_NAMESPACE2(decaf, lang)
@@ -319,11 +318,9 @@ class Object {
      * will be true, this is not an absolute requirement.
      *
      * @return A pointer to the clone of this object. It is the client's responsibility to release
-     * the pointer. Returns NULL if clone is not supported.
+     * the pointer.
      */
-    virtual Object* clone() {
-        return 0;
-    }
+    virtual Object* clone() { }
 
     /**
      * @internal

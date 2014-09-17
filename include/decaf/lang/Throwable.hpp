@@ -27,7 +27,7 @@ DECAF_OPEN_NAMESPACE2(decaf, lang)
  * Throwable is the base class of all errors and exceptions in the 
  * decaf class library.
  */
-class Throwable : public virtual Object {
+class Throwable : public Object {
   public:
 
     /**
@@ -114,8 +114,8 @@ class Throwable : public virtual Object {
      */
     Throwable* m_cause;
 
-}; // class Throwable
+};
 
 DECAF_CLOSE_NAMESPACE2
 
-#endif // DECAF_THROWABLE_HPP
+#endif /* DECAF_THROWABLE_HPP */

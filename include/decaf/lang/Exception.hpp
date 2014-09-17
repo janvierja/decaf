@@ -18,7 +18,6 @@
 #define	DECAF_LANG_EXCEPTION_HPP
 
 #include "decaf/lang/compatibility.hpp"
-#include "decaf/lang/Object.hpp"
 #include "decaf/lang/Throwable.hpp"
 
 DECAF_OPEN_NAMESPACE2(decaf, lang)
@@ -27,7 +26,7 @@ DECAF_OPEN_NAMESPACE2(decaf, lang)
  * The class Exception and its subclasses are a form of Throwable that 
  * indicates conditions that a reasonable application might want to catch. 
  */
-class Exception : public Throwable, public virtual Object {
+class Exception : public Throwable {
   public:
 
     /**

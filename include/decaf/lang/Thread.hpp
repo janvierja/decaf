@@ -36,7 +36,7 @@ DECAF_OPEN_NAMESPACE2(decaf, lang)
  * the same name. If a name is not specified when a thread is created, a new name is
  * generated for it.
  */
-class Thread : public virtual Object, public virtual Runnable {
+class Thread : public Runnable {
 } // class Thread
 
 DECAF_CLOSE_NAMESPACE2
