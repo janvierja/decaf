@@ -14,8 +14,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef DECAF_ILLEGALSTATEEXCEPTION_HPP
-#define	DECAF_ILLEGALSTATEEXCEPTION_HPP
+#ifndef DECAF_ILLEGALMONITORSTATEEXCEPTION_HPP
+#define	DECAF_ILLEGALMONITORSTATEEXCEPTION_HPP
 
 #include "decaf/lang/compatibility.hpp"
 #include "decaf/lang/RuntimeException.hpp"
@@ -23,31 +23,31 @@
 DECAF_OPEN_NAMESPACE2(decaf, lang)
 
 /**
- * Signals that a method has been invoked at an illegal or inappropriate time.
- * In other words, the application is not in an appropriate state for the
- * requested operation.
+ * Thrown to indicate that a thread has attempted to wait on an object's monitor
+ * or to notify other threads waiting on an object's monitor without owning the
+ * specified monitor.
  */
-class IllegalStateException : public RuntimeException {
+class IllegalMonitorStateException : public RuntimeException {
   public:
 
     /**
-     * Constructs a new IllegalStateException with null as its detail message.
+     * Constructs a new IllegalMonitorStateException with null as its detail message.
      * The cause is not initialized, and may subsequently be initialized by 
      * a call to Throwable.initCause(decaf::lang::Throwable).
      */
-    IllegalStateException() : RuntimeException() { }
+    IllegalMonitorStateException() : RuntimeException() { }
 
     /**
-     * Constructs a new IllegalStateException with the specified detail message. 
+     * Constructs a new IllegalMonitorStateException with the specified detail message. 
      * The cause is not initialized, and may subsequently be initialized by a
      * call to Throwable.initCause(decaf::.lang::Throwable).
      * @param message the detail message. The detail message is saved for later
      *                 retrieval by the Throwable.getMessage() method.
      */
-    explicit IllegalStateException(const std::string& message) : RuntimeException(message) { }
+    explicit IllegalMonitorStateException(const std::string& message) : RuntimeException(message) { }
 
     /**
-     * Constructs a new IllegalStateException with the specified detail message and cause.
+     * Constructs a new IllegalMonitorStateException with the specified detail message and cause.
      * Note that the detail message associated with cause is not automatically
      * incorporated in this exception's detail message.
      * @param message the detail message. The detail message is saved for later
@@ -56,11 +56,11 @@ class IllegalStateException : public RuntimeException {
      *               Throwable.getCause() method). (A null value is permitted,
      *               and indicates that the cause is nonexistent or unknown.)
      */
-    explicit IllegalStateException(const std::string& message, Throwable* cause) :
+    explicit IllegalMonitorStateException(const std::string& message, Throwable* cause) :
       RuntimeException(message, cause) { }
 
     /**
-     * Constructs a new IllegalStateException with the specified cause and a detail message 
+     * Constructs a new IllegalMonitorStateException with the specified cause and a detail message 
      * of (cause==null ? null : cause.toString()) (which typically contains the 
      * class and detail message of cause). This constructor is useful for 
      * exceptions that are little more than wrappers for other throwables
@@ -68,12 +68,12 @@ class IllegalStateException : public RuntimeException {
      *               Throwable.getCause() method). (A null value is permitted,
      *               and indicates that the cause is nonexistent or unknown.)
      */
-    explicit IllegalStateException(Throwable* cause) : RuntimeException(cause) { }
+    explicit IllegalMonitorStateException(Throwable* cause) : RuntimeException(cause) { }
 
-    virtual ~IllegalStateException() = default;
+    virtual ~IllegalMonitorStateException() = default;
 };
 
 DECAF_CLOSE_NAMESPACE2
 
-#endif	/* DECAF_ILLEGALSTATEEXCEPTION_HPP */
+#endif	/* DECAF_ILLEGALMONITORSTATEEXCEPTION_HPP */
 

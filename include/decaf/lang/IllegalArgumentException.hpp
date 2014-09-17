@@ -23,9 +23,8 @@
 DECAF_OPEN_NAMESPACE2(decaf, lang)
 
 /**
- * Signals that a method has been invoked at an illegal or inappropriate time.
- * In other words, the Java environment or Java application is not in an
- * appropriate state for the requested operation.
+ * Thrown to indicate that a method has been passed an illegal or
+ * inappropriate argument.
  */
 class IllegalArgumentException : public RuntimeException {
   public:

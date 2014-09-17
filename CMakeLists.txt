@@ -46,7 +46,8 @@ endif()
 
 set(decaf_LIB_SRCS
 	src/lang/Object.cpp
-	src/lang/Throwable.cpp)
+	src/lang/Throwable.cpp
+        src/util/concurrent/locks/ReentrantLock.cpp)
 
 add_definitions(-D_REENTRANT)
 

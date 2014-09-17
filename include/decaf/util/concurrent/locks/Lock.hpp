@@ -73,7 +73,8 @@ DECAF_OPEN_NAMESPACE4(decaf, util, concurrent, locks)
  */
 class Lock : public Object {
   public:
-    virtual ~Lock() { this->unlock(); }
+    Lock() { }
+    virtual ~Lock() { }
     
     /**
      * Acquires the lock
@@ -103,7 +104,7 @@ class Lock : public Object {
      * @return true if the lock was acquired and false if the waiting time 
      * elapsed before the lock was acquired
      */
-    virtual bool tryLock(const uint64_t& t, const TimeUnit* unit) = 0;
+    virtual bool tryLock(const uint64_t& t, const TimeUnit* timeUnit) = 0;
 
     /**
      * Returns a new Condition instance that is bound to this Lock instance.

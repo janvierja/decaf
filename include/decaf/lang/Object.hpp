@@ -320,7 +320,7 @@ class Object {
      * @return A pointer to the clone of this object. It is the client's responsibility to release
      * the pointer.
      */
-    virtual Object* clone() { }
+    virtual Object* clone();
 
     /**
      * @internal
